@@ -22,6 +22,7 @@ const App = {
     customBrightness: null,
     fontSize: 16,
     showAnswerImmediately: true,
+    autoNext: false,
     effectsEnabled: true,
   },
   currentMode: null,
@@ -31,30 +32,50 @@ const App = {
 
 /* ===== Theme List ===== */
 const THEMES = [
-  { id: 'japanese', name: '和風', desc: '日系简约' },
-  { id: 'ink', name: '墨韵', desc: '水墨黑白' },
-  { id: 'sakura', name: '樱花', desc: '柔粉' },
-  { id: 'zen', name: '枯山水', desc: '禅意砂色' },
-  { id: 'pokemon-gba', name: '宝可梦GBA', desc: '点阵绿屏' },
-  { id: 'cyberpunk', name: '赛博朋克', desc: '霓虹光污' },
-  { id: 'stardew', name: '星露谷', desc: '像素田园' },
-  { id: 'shinkai', name: '新海诚', desc: '漫画天空' },
-  { id: 'deepsea', name: '深海', desc: '幽蓝深邃' },
-  { id: 'forest', name: '森林', desc: '自然绿意' },
-  { id: 'twilight', name: '暮色', desc: '紫橙渐变' },
-  { id: 'aurora', name: '极光', desc: '极光流彩' },
-  { id: 'warmsun', name: '暖阳', desc: '暖黄' },
-  { id: 'coldmoon', name: '冷月', desc: '银灰清冷' },
-  { id: 'redplum', name: '红梅', desc: '朱红点缀' },
-  { id: 'bamboo', name: '竹林', desc: '翠竹' },
-  { id: 'forbidden', name: '紫禁', desc: '宫墙金' },
-  { id: 'obsidian', name: '黑曜', desc: '暗黑材质' },
-  { id: 'ricepaper', name: '宣纸', desc: '纸质暖色' },
-  { id: 'mint', name: '薄荷', desc: '清凉绿' },
-  { id: 'rosegold', name: '玫瑰金', desc: '玫瑰金属' },
-  { id: 'neon-night', name: '霓虹夜', desc: '暗夜霓虹' },
-  { id: 'retro', name: '复古', desc: '怀旧棕' },
-  { id: 'blueporcelain', name: '蓝瓷', desc: '青花瓷' },
+  { id: 'japanese', name: '和風', desc: '日系简约', night: false },
+  { id: 'ink', name: '墨韵', desc: '水墨黑白', night: false },
+  { id: 'sakura', name: '樱花', desc: '柔粉', night: false },
+  { id: 'zen', name: '枯山水', desc: '禅意砂色', night: false },
+  { id: 'pokemon-gba', name: '宝可梦GBA', desc: '点阵绿屏', night: false },
+  { id: 'cyberpunk', name: '赛博朋克', desc: '霓虹光污', night: false },
+  { id: 'stardew', name: '星露谷', desc: '像素田园', night: false },
+  { id: 'shinkai', name: '新海诚', desc: '漫画天空', night: false },
+  { id: 'deepsea', name: '深海', desc: '幽蓝深邃', night: false },
+  { id: 'forest', name: '森林', desc: '自然绿意', night: false },
+  { id: 'twilight', name: '暮色', desc: '紫橙渐变', night: false },
+  { id: 'aurora', name: '极光', desc: '极光流彩', night: false },
+  { id: 'warmsun', name: '暖阳', desc: '暖黄', night: false },
+  { id: 'coldmoon', name: '冷月', desc: '银灰清冷', night: false },
+  { id: 'redplum', name: '红梅', desc: '朱红点缀', night: false },
+  { id: 'bamboo', name: '竹林', desc: '翠竹', night: false },
+  { id: 'forbidden', name: '紫禁', desc: '宫墙金', night: false },
+  { id: 'obsidian', name: '黑曜', desc: '暗黑材质', night: false },
+  { id: 'ricepaper', name: '宣纸', desc: '纸质暖色', night: false },
+  { id: 'mint', name: '薄荷', desc: '清凉绿', night: false },
+  { id: 'rosegold', name: '玫瑰金', desc: '玫瑰金属', night: false },
+  { id: 'neon-night', name: '霓虹夜', desc: '暗夜霓虹', night: false },
+  { id: 'retro', name: '复古', desc: '怀旧棕', night: false },
+  { id: 'blueporcelain', name: '蓝瓷', desc: '青花瓷', night: false },
+  { id: 'midnight', name: '深夜', desc: '标准夜间', night: true },
+  { id: 'vampire', name: '吸血鬼', desc: '血色暗夜', night: true },
+  { id: 'halloween', name: '万圣节', desc: '南瓜幽灵', night: true },
+  { id: 'starry', name: '星空', desc: '繁星闪烁', night: true },
+  { id: 'abyss', name: '深渊', desc: '虚空凝视', night: true },
+  { id: 'phantom', name: '幽灵', desc: '飘渺幽魂', night: true },
+  { id: 'eclipse', name: '日蚀', desc: '日冕金环', night: true },
+  { id: 'noir', name: '黑色电影', desc: '高对比黑白', night: true },
+  { id: 'galaxy', name: '銀河', desc: '星云漩涡', night: true },
+  { id: 'witch', name: '女巫', desc: '暗夜魔法', night: true },
+  { id: 'moonlight', name: '月光', desc: '银色月华', night: true },
+  { id: 'shadow', name: '暗影', desc: '影之领域', night: true },
+  { id: 'batcave', name: '蝙蝠洞', desc: '暗石幽穴', night: true },
+  { id: 'crystal-night', name: '水晶夜', desc: '冰晶折射', night: true },
+  { id: 'dreamless', name: '无梦', desc: '梦境碎片', night: true },
+  { id: 'ember', name: '余烬', desc: '炭火星光', night: true },
+  { id: 'frost-night', name: '霜夜', desc: '霜花飞舞', night: true },
+  { id: 'matrix', name: '矩阵', desc: '数字雨', night: true },
+  { id: 'void', name: '虚空', desc: '绝对虚无', night: true },
+  { id: 'midnight-rose', name: '暗夜玫瑰', desc: '血色玫瑰', night: true },
 ];
 
 /* ===== Mode Definitions ===== */
@@ -436,6 +457,8 @@ async function loadData() {
 
 /* ===== Dashboard Renderer ===== */
 function renderDashboard() {
+  // Easter egg check on dashboard view
+  EasterEgg.tryTrigger('dashboard-load');
   // Stats cards
   const overall = Storage.getOverallStats();
   const accuracy = Storage.getAccuracy();
@@ -758,8 +781,9 @@ function showLoopConfig() {
       <div class="config-count-input">
         <input type="number" id="loop-start" value="1" min="1" style="width:5rem"> 到
         <input type="number" id="loop-end" value="50" min="1" style="width:5rem">
+        <span id="loop-range-hint" style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem"></span>
       </div>
-      <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.5rem">在该部门题库范围内选择连续题号</div>
+      <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.5rem">在该部门题库范围内选择连续题号（按部门内序号，非全局题号）</div>
     </div>
     <div class="config-section">
       <div class="config-label">每次题数</div>
@@ -777,13 +801,30 @@ function showLoopConfig() {
   setupChipSelection('loop-depts');
   const slider = $('loop-count');
   slider.oninput = () => $('loop-count-val').textContent = slider.value;
+  // Update range max when department changes
+  const updateLoopRange = () => {
+    const dept = getActiveChip('loop-depts');
+    const deptQuestions = App.questions.filter(q => dept==='all' || q.dept===dept);
+    const maxN = deptQuestions.length || 1;
+    const startInput = $('loop-start');
+    const endInput = $('loop-end');
+    startInput.max = maxN;
+    endInput.max = maxN;
+    endInput.value = Math.min(50, maxN);
+    $('loop-range-hint').textContent = `共${maxN}题`;
+  };
+  $('loop-depts').addEventListener('click', updateLoopRange);
+  updateLoopRange();
   $('loop-start-btn').onclick = () => {
     const dept = getActiveChip('loop-depts');
     const startN = parseInt($('loop-start').value) || 1;
     const endN = parseInt($('loop-end').value) || 50;
     const count = parseInt($('loop-count').value) || 20;
-    let pool = App.questions.filter(q => (dept==='all'||q.dept===dept) && q.id >= startN && q.id <= endN);
+    // First filter by department, THEN apply range by position (not global ID)
+    let pool = App.questions.filter(q => dept==='all' || q.dept===dept);
     pool.sort((a,b) => a.id - b.id);
+    // Apply range to the department-filtered list by index
+    pool = pool.slice(startN - 1, endN);
     if (pool.length === 0) { showToast('范围内无题目'); return; }
     startLoopQuiz(pool, count);
   };
@@ -1017,6 +1058,13 @@ function renderQuizQuestion() {
     if (quiz.index < quiz.questions.length - 1) { quiz.index++; renderQuizQuestion(); }
     else finishQuiz();
   };
+  // Auto-advance if enabled and answered correctly
+  if (App.settings.autoNext && isCorrect) {
+    setTimeout(function() {
+      var btn = $('quiz-next');
+      if (btn && !btn.disabled) btn.click();
+    }, 1500);
+  }
 }
 
 function selectOption(optEl, q) {
@@ -1057,6 +1105,14 @@ function submitAnswer() {
 
   // Show result
   Audio.play(isCorrect);
+
+  // Easter egg trigger
+  if (isCorrect) {
+    if (quiz.mode === 'spaced') EasterEgg.tryTrigger('spaced-correct');
+    else EasterEgg.tryTrigger('quiz-correct');
+  } else {
+    EasterEgg.tryTrigger('quiz-wrong');
+  }
 
   // Highlight options
   document.querySelectorAll('#quiz-options .quiz-option').forEach(opt => {
@@ -1234,6 +1290,8 @@ function submitLoopAnswer() {
   Storage.recordAnswer(q.id, isCorrect);
   Storage.logSession(q.id, isCorrect);
   if (isCorrect) quiz.correct++; else quiz.wrong++;
+  if (isCorrect) EasterEgg.tryTrigger('quiz-correct');
+  else EasterEgg.tryTrigger('quiz-wrong');
 
   Audio.play(isCorrect);
 
@@ -1272,6 +1330,13 @@ function submitLoopAnswer() {
     if (quiz.queue.length > 0) renderLoopQuestion();
     else finishLoopQuiz();
   };
+  // Auto-advance if enabled and answered correctly
+  if (App.settings.autoNext && isCorrect) {
+    setTimeout(function() {
+      var btn = $('quiz-next');
+      if (btn && !btn.disabled) btn.click();
+    }, 1500);
+  }
 }
 
 function finishLoopQuiz() {
@@ -1336,6 +1401,7 @@ function renderAnswerCard(questions) {
         // Start quiz from this question
         const startIdx = questions.indexOf(q);
         const qs = questions.slice(startIdx);
+        EasterEgg.tryTrigger('selection-jump');
         startQuiz('selection', qs, { startId: q.id });
       };
       grid.appendChild(cell);
@@ -1420,6 +1486,7 @@ $('mem-flip')?.addEventListener('click', () => {
   const ans = $('mem-answer');
   if (ans) ans.classList.toggle('show', memState.flipped);
   $('mem-flip').textContent = memState.flipped ? '隐藏答案' : '显示答案';
+  if (memState.flipped) EasterEgg.tryTrigger('memorize-flip');
 });
 
 /* ===== Flashcard Mode (闪卡记忆) ===== */
@@ -1467,6 +1534,7 @@ function flipFlashcard() {
   Audio.playClick();
   fcState.flipped = !fcState.flipped;
   $('flashcard').classList.toggle('flipped', fcState.flipped);
+  if (fcState.flipped) EasterEgg.tryTrigger('flashcard-flip');
 }
 
 /* ===== Game Mode (游戏记忆) ===== */
@@ -1538,6 +1606,7 @@ function answerGameQuestion(optEl) {
 
   Storage.recordAnswer(q.id, isCorrect);
   Storage.logSession(q.id, isCorrect);
+  if (isCorrect) EasterEgg.tryTrigger('game-correct');
   Audio.play(isCorrect);
 
   // Highlight
@@ -1759,6 +1828,18 @@ function renderSettings() {
       </div>
       <div class="settings-row">
         <div>
+          <div class="settings-row-label">自动跳题</div>
+          <div class="settings-row-desc">答对后自动跳到下一题</div>
+        </div>
+        <div class="settings-row-control">
+          <label class="toggle-switch">
+            <input type="checkbox" id="set-autonext" ${App.settings.autoNext?'checked':''}>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="settings-row">
+        <div>
           <div class="settings-row-label">主题特效</div>
           <div class="settings-row-desc">粒子动效与主题元素联动</div>
         </div>
@@ -1806,12 +1887,39 @@ function renderSettings() {
         </div>
       </div>
     </div>
+    <div class="settings-group">
+      <div class="settings-row" style="cursor:pointer" id="set-eggs-row">
+        <div>
+          <div class="settings-row-label">彩蛋收集</div>
+          <div class="settings-row-desc">已收集 ${EasterEgg.getCount()} / ${EasterEgg.getTotal()} 个主题彩蛋</div>
+        </div>
+        <div class="settings-row-control">
+          <div style="font-size:1.5rem">${EasterEgg.getCount() >= EasterEgg.getTotal() ? '🏆' : '🎁'}</div>
+        </div>
+      </div>
+      <div id="egg-collection" style="display:none;padding:1rem;max-height:400px;overflow-y:auto;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:0.5rem;">
+          ${EasterEgg.getFoundList().map(function(item) {
+            return '<div style="text-align:center;padding:0.6rem;border:1px solid var(--border);border-radius:var(--radius-sm);' +
+              (item.found ? 'background:var(--surface-hover);' : 'opacity:0.4;') + '">' +
+              '<div style="font-size:2rem;' + (item.found ? '' : 'filter:grayscale(1);') + '">' + (item.found ? item.egg.sticker : '❔') + '</div>' +
+              '<div style="font-size:0.65rem;margin-top:0.25rem;font-weight:600;">' + (item.found ? item.egg.name : '???') + '</div>' +
+              (item.found ? '<div style="font-size:0.55rem;margin-top:0.2rem;color:var(--text-muted);">' + item.egg.hint + '</div>' : '') +
+              '</div>';
+          }).join('')}
+        </div>
+        ${EasterEgg.getCount() >= EasterEgg.getTotal() ?
+          '<div style="text-align:center;padding:1rem;color:var(--accent);font-weight:700;">全图鉴达成！恭喜你发现了所有彩蛋！</div>' :
+          '<div style="text-align:center;padding:0.75rem;font-size:0.7rem;color:var(--text-muted);">切换不同主题并在对应场景探索，收集全部' + EasterEgg.getTotal() + '个彩蛋贴纸</div>'}
+      </div>
+    </div>
     <div style="text-align:center;padding:1rem 0;font-size:0.75rem;color:var(--text-muted)">
-      拾知 v1.0 · 运营岗位资质题库
+      拾知 v1.1 · 运营岗位资质题库
     </div>
   `;
   $('set-sound').onchange = (e) => { App.settings.soundEnabled = e.target.checked; Storage.save(); showToast(e.target.checked?'音效已开启':'音效已关闭'); if(e.target.checked) Audio.play(true); };
   $('set-immediate').onchange = (e) => { App.settings.showAnswerImmediately = e.target.checked; Storage.save(); };
+  $('set-autonext').onchange = (e) => { App.settings.autoNext = e.target.checked; Storage.save(); showToast(e.target.checked?'自动跳题已开启':'自动跳题已关闭'); };
   $('set-effects').onchange = (e) => {
     App.settings.effectsEnabled = e.target.checked;
     Storage.save();
@@ -1831,6 +1939,12 @@ function renderSettings() {
       renderSettings();
       showToast('数据已清空');
     }
+  };
+  $('set-eggs-row').onclick = function() {
+    var el = $('egg-collection');
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    // Trigger easter egg check when viewing collection
+    EasterEgg.tryTrigger('settings-view');
   };
   showView('settings');
 }
@@ -1910,6 +2024,7 @@ function renderThemeCustomizer() {
       ThemeMgr.apply();
       Storage.save();
       renderThemeCustomizer();
+      EasterEgg.tryTrigger('theme-change');
     };
   });
 
@@ -1994,9 +2109,151 @@ function bindEvents() {
   };
 }
 
+/* ===== Easter Egg System ===== */
+/* Each egg has unique trigger contexts so they appear in different places.
+   Contexts: quiz-correct, quiz-wrong, loop-correct, game-correct, spaced-correct,
+             flashcard-flip, memorize-flip, selection-jump, theme-change,
+             dashboard-load, settings-view
+   Special: nightOnly (only 20:00-06:00), morningOnly (06:00-11:00) */
+const EASTER_EGGS = [
+  { id: 'japanese', theme: 'japanese', sticker: '🦊', name: '狐狸面具', hint: '和風主题下答对题目时...', contexts: ['quiz-correct','flashcard-flip'] },
+  { id: 'ink', theme: 'ink', sticker: '🐉', name: '水墨龙', hint: '墨韵深处有龙影', contexts: ['quiz-correct','memorize-flip'] },
+  { id: 'sakura', theme: 'sakura', sticker: '🌸', name: '花瓣仙', hint: '樱花飞舞时节...', contexts: ['quiz-correct','dashboard-load'] },
+  { id: 'zen', theme: 'zen', sticker: '🪨', name: '禅石', hint: '枯山水中寻静心', contexts: ['spaced-correct','dashboard-load'] },
+  { id: 'pokemon-gba', theme: 'pokemon-gba', sticker: '⚡', name: '闪电鼠', hint: '点阵世界的秘密', contexts: ['game-correct','theme-change'] },
+  { id: 'cyberpunk', theme: 'cyberpunk', sticker: '🐱', name: '故障猫', hint: '霓虹城市中的幽灵', contexts: ['game-correct','quiz-correct'] },
+  { id: 'stardew', theme: 'stardew', sticker: '🌟', name: '星之果', hint: '田园深处的珍宝', contexts: ['flashcard-flip','selection-jump'] },
+  { id: 'shinkai', theme: 'shinkai', sticker: '☄️', name: '流星', hint: '天空之城的约定', contexts: ['quiz-correct','theme-change'] },
+  { id: 'deepsea', theme: 'deepsea', sticker: '🪼', name: '水母', hint: '深海中漂浮的光', contexts: ['quiz-correct','dashboard-load'] },
+  { id: 'forest', theme: 'forest', sticker: '🍄', name: '蘑菇', hint: '森林深处的精灵', contexts: ['flashcard-flip','spaced-correct'] },
+  { id: 'twilight', theme: 'twilight', sticker: '🔥', name: '萤火', hint: '暮色中的微光', contexts: ['quiz-correct','dashboard-load'] },
+  { id: 'aurora', theme: 'aurora', sticker: '✨', name: '极光精', hint: '极光尽头的守护者', contexts: ['dashboard-load','spaced-correct'] },
+  { id: 'warmsun', theme: 'warmsun', sticker: '🌻', name: '向日葵', hint: '阳光下的金色', contexts: ['quiz-correct','dashboard-load'], morningOnly: true },
+  { id: 'coldmoon', theme: 'coldmoon', sticker: '🐰', name: '玉兔', hint: '月宫中的捣药者', contexts: ['quiz-correct','flashcard-flip'], nightOnly: true },
+  { id: 'redplum', theme: 'redplum', sticker: '🦌', name: '梅花鹿', hint: '红梅林中的身影', contexts: ['quiz-correct','memorize-flip'] },
+  { id: 'bamboo', theme: 'bamboo', sticker: '🐼', name: '熊猫', hint: '竹林深处的国宝', contexts: ['spaced-correct','flashcard-flip'] },
+  { id: 'forbidden', theme: 'forbidden', sticker: '🐲', name: '金龙', hint: '宫墙之内藏龙', contexts: ['quiz-correct','theme-change'] },
+  { id: 'obsidian', theme: 'obsidian', sticker: '🦋', name: '黑曜蝶', hint: '暗黑中的荧光', contexts: ['quiz-wrong','game-correct'] },
+  { id: 'ricepaper', theme: 'ricepaper', sticker: '🔖', name: '印章', hint: '宣纸上的朱印', contexts: ['memorize-flip','spaced-correct'] },
+  { id: 'mint', theme: 'mint', sticker: '🍬', name: '薄荷糖', hint: '清凉一夏', contexts: ['quiz-correct','dashboard-load'] },
+  { id: 'rosegold', theme: 'rosegold', sticker: '🌹', name: '金玫瑰', hint: '金属与花的融合', contexts: ['theme-change','quiz-correct'] },
+  { id: 'neon-night', theme: 'neon-night', sticker: '💡', name: '霓虹标', hint: '夜幕下的招牌', contexts: ['game-correct','quiz-correct'], nightOnly: true },
+  { id: 'retro', theme: 'retro', sticker: '🎞️', name: '胶卷', hint: '旧时光的记忆', contexts: ['memorize-flip','selection-jump'] },
+  { id: 'blueporcelain', theme: 'blueporcelain', sticker: '🐟', name: '青花鱼', hint: '瓷纹中的游鱼', contexts: ['quiz-correct','dashboard-load'] },
+  { id: 'midnight', theme: 'midnight', sticker: '🌙', name: '弯月', hint: '深夜独行者', contexts: ['dashboard-load','quiz-correct'], nightOnly: true },
+  { id: 'vampire', theme: 'vampire', sticker: '🦇', name: '血蝙蝠', hint: '暗夜中的红色渴望', contexts: ['quiz-wrong','dashboard-load'], nightOnly: true },
+  { id: 'halloween', theme: 'halloween', sticker: '🎃', name: '南瓜灯', hint: '不给糖就捣蛋', contexts: ['quiz-wrong','selection-jump'] },
+  { id: 'starry', theme: 'starry', sticker: '⭐', name: '北极星', hint: '仰望星空的夜晚', contexts: ['dashboard-load','theme-change'], nightOnly: true },
+  { id: 'abyss', theme: 'abyss', sticker: '👁️', name: '深渊眼', hint: '虚空在凝视着你', contexts: ['quiz-wrong','game-correct'] },
+  { id: 'phantom', theme: 'phantom', sticker: '👻', name: '小幽灵', hint: '飘渺的白色身影', contexts: ['quiz-wrong','flashcard-flip'] },
+  { id: 'eclipse', theme: 'eclipse', sticker: '🌗', name: '日冕', hint: '日月交替之际', contexts: ['theme-change','dashboard-load'] },
+  { id: 'noir', theme: 'noir', sticker: '🕵️', name: '侦探', hint: '黑白世界中的真相', contexts: ['quiz-correct','memorize-flip'] },
+  { id: 'galaxy', theme: 'galaxy', sticker: '🌌', name: '银河', hint: '旋转的星之臂', contexts: ['dashboard-load','spaced-correct'] },
+  { id: 'witch', theme: 'witch', sticker: '🦉', name: '猫头鹰', hint: '女巫的忠实伙伴', contexts: ['quiz-wrong','selection-jump'], nightOnly: true },
+  { id: 'moonlight', theme: 'moonlight', sticker: '🐺', name: '月狼', hint: '月圆之夜的嚎叫', contexts: ['dashboard-load','quiz-correct'], nightOnly: true },
+  { id: 'shadow', theme: 'shadow', sticker: '🕴️', name: '影行者', hint: '光与暗的交界', contexts: ['quiz-wrong','theme-change'] },
+  { id: 'batcave', theme: 'batcave', sticker: '🦇', name: '暗蝠', hint: '洞窟深处的守护', contexts: ['quiz-wrong','game-correct'], nightOnly: true },
+  { id: 'crystal-night', theme: 'crystal-night', sticker: '💎', name: '水晶', hint: '冰晶折射的光芒', contexts: ['flashcard-flip','theme-change'] },
+  { id: 'dreamless', theme: 'dreamless', sticker: '🔮', name: '梦碎片', hint: '无梦之夜的碎片', contexts: ['dashboard-load','memorize-flip'] },
+  { id: 'ember', theme: 'ember', sticker: '🔥', name: '余烬', hint: '灰烬中的火种', contexts: ['quiz-correct','game-correct'] },
+  { id: 'frost-night', theme: 'frost-night', sticker: '❄️', name: '霜花', hint: '冰封之夜的结晶', contexts: ['flashcard-flip','spaced-correct'], nightOnly: true },
+  { id: 'matrix', theme: 'matrix', sticker: '💊', name: '红色药丸', hint: '选择红色还是蓝色', contexts: ['game-correct','quiz-correct'] },
+  { id: 'void', theme: 'void', sticker: '⚫', name: '虚空核', hint: '无中的有', contexts: ['quiz-wrong','dashboard-load'] },
+  { id: 'midnight-rose', theme: 'midnight-rose', sticker: '🥀', name: '凋零玫瑰', hint: '暗夜中最后的红', contexts: ['quiz-wrong','theme-change'], nightOnly: true },
+];
+
+const EasterEgg = {
+  found: new Set(),
+  lastTrigger: 0,
+  COOLDOWN: 30000, // 30s cooldown between triggers
+
+  load: function() {
+    try {
+      var raw = localStorage.getItem('shizhi_eggs');
+      if (raw) {
+        var arr = JSON.parse(raw);
+        this.found = new Set(arr);
+      }
+    } catch(e) {}
+  },
+
+  save: function() {
+    try {
+      localStorage.setItem('shizhi_eggs', JSON.stringify(Array.from(this.found)));
+    } catch(e) {}
+  },
+
+  // Call this at various interaction points. Returns true if an egg was found.
+  // Each egg only triggers in its specified contexts, with time-based conditions.
+  tryTrigger: function(context) {
+    if (!App.settings.effectsEnabled) return false;
+    var now = Date.now();
+    if (now - this.lastTrigger < this.COOLDOWN) return false;
+    var themeId = App.settings.theme;
+    var egg = EASTER_EGGS.find(function(e) { return e.theme === themeId; });
+    if (!egg) return false;
+    // Check context match (settings-view is universal - works for any theme)
+    if (context !== 'settings-view') {
+      if (!egg.contexts || egg.contexts.indexOf(context) === -1) return false;
+    }
+    // Check time conditions
+    var hour = new Date().getHours();
+    if (egg.nightOnly && (hour < 20 && hour >= 6)) return false;
+    if (egg.morningOnly && (hour < 6 || hour >= 11)) return false;
+    // 12% chance for context match, 20% for theme-change, 8% for settings-view
+    var chance = context === 'theme-change' ? 0.20 : context === 'settings-view' ? 0.08 : 0.12;
+    if (Math.random() > chance) return false;
+    if (this.found.has(egg.id)) {
+      this.showSticker(egg, true);
+    } else {
+      this.found.add(egg.id);
+      this.save();
+      this.showSticker(egg, false);
+    }
+    this.lastTrigger = now;
+    return true;
+  },
+
+  showSticker: function(egg, isRepeat) {
+    var overlay = document.createElement('div');
+    overlay.style.cssText =
+      'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);' +
+      'z-index:99999;pointer-events:none;text-align:center;' +
+      'transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1),opacity 0.5s;';
+    overlay.innerHTML =
+      '<div style="font-size:4rem;line-height:1.2;filter:drop-shadow(0 0 12px ' + 'rgba(255,255,255,0.5))' + '">' + egg.sticker + '</div>' +
+      '<div style="font-size:1.2rem;font-weight:700;color:var(--text);margin-top:0.5rem;">' + egg.name + '</div>' +
+      '<div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem;">' +
+      (isRepeat ? '再次相遇' : '彩蛋已收集') + '</div>';
+    document.body.appendChild(overlay);
+    // Animate in
+    setTimeout(function() {
+      overlay.style.transform = 'translate(-50%,-50%) scale(1)';
+    }, 50);
+    // Animate out
+    setTimeout(function() {
+      overlay.style.opacity = '0';
+      overlay.style.transform = 'translate(-50%,-50%) scale(0.5)';
+    }, 2500);
+    setTimeout(function() {
+      if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    }, 3000);
+  },
+
+  getCount: function() { return this.found.size; },
+  getTotal: function() { return EASTER_EGGS.length; },
+  getFoundList: function() {
+    var self = this;
+    return EASTER_EGGS.map(function(e) {
+      return { egg: e, found: self.found.has(e.id) };
+    });
+  },
+};
+
 /* ===== Init ===== */
 async function init() {
   Storage.load();
+  EasterEgg.load();
   ThemeMgr.apply();
   bindEvents();
   await loadData();

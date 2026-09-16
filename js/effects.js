@@ -47,6 +47,28 @@ var ThemeFX = {
     'neon-night':     { type: 'neon',        color: '#ff00ff', count: 25, size: [2, 6],  speed: [0.3, 0.8],  opacity: [0.3, 0.7], secondary: '#ffff00' },
     'retro':          { type: 'grain',       color: '#8b6914', count: 40, size: [1, 2],  speed: [0, 0.1],    opacity: [0.05, 0.2] },
     'blueporcelain':  { type: 'porcelain',   color: '#1565c0', count: 20, size: [3, 8],  speed: [0.1, 0.3],  opacity: [0.05, 0.15] },
+
+    /* ===== 20 Night Themes ===== */
+    'midnight':       { type: 'stardust',    color: '#4a6fa5', count: 30, size: [1, 2],  speed: [0.05, 0.2], opacity: [0.1, 0.4] },
+    'vampire':        { type: 'bat',         color: '#8b0000', count: 15, size: [4, 10], speed: [0.3, 0.8],  opacity: [0.2, 0.5] },
+    'halloween':      { type: 'ghost',       color: '#ff6600', count: 20, size: [3, 8],  speed: [0.2, 0.5],  opacity: [0.2, 0.5] },
+    'starry':         { type: 'twinkle',     color: '#ffffff', count: 40, size: [1, 3],  speed: [0, 0],      opacity: [0.2, 0.8] },
+    'abyss':          { type: 'voideye',     color: '#2a1a3e', count: 10, size: [3, 8],  speed: [0.05, 0.15], opacity: [0.05, 0.2] },
+    'phantom':        { type: 'wisp',        color: '#e0e0e0', count: 15, size: [5, 15], speed: [0.1, 0.3],  opacity: [0.05, 0.2] },
+    'eclipse':        { type: 'corona',      color: '#ffd700', count: 12, size: [5, 15], speed: [0.05, 0.2], opacity: [0.1, 0.3] },
+    'noir':           { type: 'noirgrain',   color: '#ffffff', count: 30, size: [1, 2],  speed: [0, 0.05],   opacity: [0.05, 0.15] },
+    'galaxy':         { type: 'galaxy',      color: '#b388ff', count: 30, size: [1, 4],  speed: [0.1, 0.3],  opacity: [0.2, 0.6] },
+    'witch':          { type: 'sparkle',     color: '#00897b', count: 25, size: [1, 4],  speed: [0.1, 0.3],  opacity: [0.15, 0.4] },
+    'moonlight':      { type: 'moonbeam',    color: '#b0bec5', count: 25, size: [1, 3],  speed: [0.05, 0.2], opacity: [0.1, 0.3] },
+    'shadow':         { type: 'shadow',      color: '#546e7a', count: 15, size: [10, 30], speed: [0.1, 0.3], opacity: [0.03, 0.1] },
+    'batcave':        { type: 'bat',         color: '#424242', count: 12, size: [3, 8],  speed: [0.2, 0.5],  opacity: [0.1, 0.3] },
+    'crystal-night':  { type: 'crystal',     color: '#00bcd4', count: 20, size: [3, 8],  speed: [0.05, 0.2], opacity: [0.1, 0.3] },
+    'dreamless':      { type: 'dreamshard',  color: '#5c6bc0', count: 20, size: [2, 6],  speed: [0.05, 0.2], opacity: [0.1, 0.3] },
+    'ember':          { type: 'ember',       color: '#ff6f00', count: 30, size: [1, 4],  speed: [0.3, 0.8],  opacity: [0.2, 0.6] },
+    'frost-night':    { type: 'snowflake',   color: '#4fc3f7', count: 30, size: [2, 6],  speed: [0.2, 0.5],  opacity: [0.2, 0.5] },
+    'matrix':         { type: 'matrix',      color: '#00ff00', count: 30, size: [8, 16], speed: [1, 3],      opacity: [0.1, 0.5] },
+    'void':           { type: 'voidspeck',   color: '#ffffff', count: 15, size: [1, 2],  speed: [0, 0.05],   opacity: [0.1, 0.4] },
+    'midnight-rose':  { type: 'petal',       color: '#c2185b', count: 20, size: [4, 8],  speed: [0.2, 0.5],  opacity: [0.2, 0.5] },
   },
 
   init: function() {
@@ -260,6 +282,62 @@ var ThemeFX = {
         p.x += p.vx; p.y += p.vy;
         p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase * 2)) * (cfg.opacity[1] - cfg.opacity[0]);
         break;
+      case 'stardust': case 'voideye': case 'voidspeck': case 'noirgrain':
+        p.x += p.vx; p.y += p.vy;
+        p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase * 0.5)) * (cfg.opacity[1] - cfg.opacity[0]);
+        break;
+      case 'twinkle':
+        p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase * 3)) * (cfg.opacity[1] - cfg.opacity[0]);
+        break;
+      case 'bat':
+        p.x += p.vx + Math.sin(p.phase * 2) * 1.5;
+        p.y += p.vy + Math.sin(p.phase) * 0.5;
+        p.rotation += p.rotationSpeed * 3;
+        break;
+      case 'ghost':
+        p.x += p.vx + Math.sin(p.phase) * 1;
+        p.y += p.vy;
+        p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase * 1.5)) * (cfg.opacity[1] - cfg.opacity[0]);
+        break;
+      case 'wisp':
+        p.x += p.vx + Math.sin(p.phase) * 0.5;
+        p.y += p.vy;
+        p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase)) * (cfg.opacity[1] - cfg.opacity[0]);
+        break;
+      case 'corona':
+        p.rotation += 0.01;
+        p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase * 0.8)) * (cfg.opacity[1] - cfg.opacity[0]);
+        break;
+      case 'galaxy':
+        p.x += p.vx; p.y += p.vy;
+        p.rotation += p.rotationSpeed;
+        break;
+      case 'shadow':
+        p.x += p.vx; p.y += p.vy;
+        p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase * 0.3)) * (cfg.opacity[1] - cfg.opacity[0]);
+        break;
+      case 'crystal':
+        p.rotation += p.rotationSpeed;
+        p.x += p.vx; p.y += p.vy;
+        break;
+      case 'dreamshard':
+        p.x += p.vx; p.y += p.vy;
+        p.rotation += p.rotationSpeed * 2;
+        break;
+      case 'ember':
+        p.x += p.vx + Math.sin(p.phase) * 0.5;
+        p.y -= p.speed * 0.5;
+        p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase * 2)) * (cfg.opacity[1] - cfg.opacity[0]);
+        break;
+      case 'snowflake':
+        p.x += p.vx + Math.sin(p.phase) * 0.8;
+        p.y += p.vy;
+        p.rotation += p.rotationSpeed;
+        break;
+      case 'matrix':
+        p.y += p.speed;
+        if (p.y > this.h + p.size) { p.y = -p.size; p.x = Math.random() * this.w; }
+        break;
       default:
         p.x += p.vx + Math.sin(p.phase) * 0.3;
         p.y += p.vy;
@@ -448,6 +526,200 @@ var ThemeFX = {
         ctx.stroke();
         break;
 
+      /* ===== Night Theme Particles ===== */
+      case 'stardust': case 'voideye': case 'voidspeck':
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+
+      case 'twinkle': {
+        var tg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
+        tg.addColorStop(0, p.color);
+        tg.addColorStop(0.3, p.color + '88');
+        tg.addColorStop(1, p.color + '00');
+        ctx.fillStyle = tg;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+        ctx.fill();
+        // Cross sparkle
+        ctx.strokeStyle = p.color;
+        ctx.globalAlpha = p.opacity * 0.5;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(p.x - p.size * 2, p.y);
+        ctx.lineTo(p.x + p.size * 2, p.y);
+        ctx.moveTo(p.x, p.y - p.size * 2);
+        ctx.lineTo(p.x, p.y + p.size * 2);
+        ctx.stroke();
+        break;
+      }
+
+      case 'bat':
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity;
+        // Simple bat shape
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(-p.size, -p.size * 0.5, -p.size * 1.5, 0);
+        ctx.quadraticCurveTo(-p.size * 0.5, p.size * 0.3, 0, p.size * 0.3);
+        ctx.quadraticCurveTo(p.size * 0.5, p.size * 0.3, p.size * 1.5, 0);
+        ctx.quadraticCurveTo(p.size, -p.size * 0.5, 0, 0);
+        ctx.fill();
+        break;
+
+      case 'ghost':
+        ctx.translate(p.x, p.y);
+        ctx.fillStyle = p.color;
+        // Ghost body
+        ctx.beginPath();
+        ctx.arc(0, -p.size * 0.3, p.size, Math.PI, 0);
+        ctx.lineTo(p.size, p.size * 0.5);
+        ctx.quadraticCurveTo(p.size * 0.7, p.size * 0.3, p.size * 0.4, p.size * 0.5);
+        ctx.quadraticCurveTo(p.size * 0.2, p.size * 0.3, 0, p.size * 0.5);
+        ctx.quadraticCurveTo(-p.size * 0.2, p.size * 0.3, -p.size * 0.4, p.size * 0.5);
+        ctx.quadraticCurveTo(-p.size * 0.7, p.size * 0.3, -p.size, p.size * 0.5);
+        ctx.closePath();
+        ctx.fill();
+        // Eyes
+        ctx.fillStyle = '#000';
+        ctx.beginPath();
+        ctx.arc(-p.size * 0.3, -p.size * 0.3, p.size * 0.12, 0, Math.PI * 2);
+        ctx.arc(p.size * 0.3, -p.size * 0.3, p.size * 0.12, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+
+      case 'wisp': {
+        var wg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+        wg.addColorStop(0, p.color);
+        wg.addColorStop(0.5, p.color + '44');
+        wg.addColorStop(1, p.color + '00');
+        ctx.fillStyle = wg;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      }
+
+      case 'corona': {
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        var cg = ctx.createRadialGradient(0, 0, p.size * 0.5, 0, 0, p.size * 2);
+        cg.addColorStop(0, p.color + '00');
+        cg.addColorStop(0.4, p.color + '66');
+        cg.addColorStop(0.6, p.color);
+        cg.addColorStop(0.7, p.color + '44');
+        cg.addColorStop(1, p.color + '00');
+        ctx.fillStyle = cg;
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size * 2, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      }
+
+      case 'noirgrain':
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+        break;
+
+      case 'galaxy': {
+        var gg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
+        gg.addColorStop(0, p.color);
+        gg.addColorStop(0.3, p.color + '88');
+        gg.addColorStop(0.6, p.color + '22');
+        gg.addColorStop(1, p.color + '00');
+        ctx.fillStyle = gg;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      }
+
+      case 'shadow': {
+        var sg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+        sg.addColorStop(0, p.color);
+        sg.addColorStop(1, p.color + '00');
+        ctx.fillStyle = sg;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      }
+
+      case 'crystal':
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.strokeStyle = p.color;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, -p.size);
+        ctx.lineTo(p.size * 0.6, 0);
+        ctx.lineTo(0, p.size);
+        ctx.lineTo(-p.size * 0.6, 0);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.globalAlpha = p.opacity * 0.2;
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        break;
+
+      case 'dreamshard':
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity * 0.4;
+        ctx.beginPath();
+        ctx.moveTo(0, -p.size);
+        ctx.lineTo(p.size * 0.5, -p.size * 0.3);
+        ctx.lineTo(p.size * 0.3, p.size * 0.5);
+        ctx.lineTo(-p.size * 0.3, p.size * 0.5);
+        ctx.lineTo(-p.size * 0.5, -p.size * 0.3);
+        ctx.closePath();
+        ctx.fill();
+        break;
+
+      case 'ember': {
+        var eg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
+        eg.addColorStop(0, p.color);
+        eg.addColorStop(0.3, p.color + '88');
+        eg.addColorStop(1, p.color + '00');
+        ctx.fillStyle = eg;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      }
+
+      case 'snowflake':
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.strokeStyle = p.color;
+        ctx.lineWidth = 1;
+        for (var si = 0; si < 3; si++) {
+          ctx.beginPath();
+          ctx.moveTo(0, -p.size);
+          ctx.lineTo(0, p.size);
+          ctx.stroke();
+          // Small branches
+          ctx.beginPath();
+          ctx.moveTo(0, -p.size * 0.5);
+          ctx.lineTo(-p.size * 0.3, -p.size * 0.7);
+          ctx.moveTo(0, -p.size * 0.5);
+          ctx.lineTo(p.size * 0.3, -p.size * 0.7);
+          ctx.stroke();
+          ctx.rotate(Math.PI / 3);
+        }
+        break;
+
+      case 'matrix':
+        ctx.fillStyle = p.color;
+        ctx.font = 'bold ' + Math.round(p.size * 0.8) + 'px monospace';
+        ctx.fillText(Math.random() < 0.5 ? '0' : '1', p.x, p.y);
+        break;
+
       default:
         ctx.fillStyle = p.color;
         ctx.beginPath();
@@ -461,15 +733,20 @@ var ThemeFX = {
     p.x = Math.random() * this.w;
     switch (cfg.type) {
       case 'petal': case 'leaf': case 'pixel': case 'glitch': case 'sunray': case 'grain':
+      case 'snowflake': case 'ember': case 'bat':
         p.y = -20; break;
-      case 'bubble': case 'sparkle': case 'shimmer':
+      case 'bubble': case 'sparkle': case 'shimmer': case 'wisp': case 'ghost':
         p.y = this.h + 20; break;
       case 'firefly': case 'neon': case 'moonbeam': case 'mote': case 'dust': case 'sand': case 'inkdrop':
+      case 'stardust': case 'voideye': case 'voidspeck': case 'noirgrain': case 'twinkle':
+      case 'galaxy': case 'shadow': case 'crystal': case 'dreamshard': case 'corona':
         p.y = Math.random() * this.h; break;
       case 'cloud':
         p.y = Math.random() * this.h * 0.5; p.x = -p.size; break;
       case 'aurora':
         p.y = Math.random() * this.h * 0.6; p.x = -p.size; break;
+      case 'matrix':
+        p.y = -p.size; break;
       default:
         p.y = Math.random() * this.h;
     }
