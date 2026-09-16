@@ -1063,3 +1063,1037 @@ body.theme-effect-gradient-bg {
   mix-blend-mode: screen;
   opacity: 0.5;
 }
+
+
+/* ============================================================
+   NIGHT / DARK THEME COLLECTION (Themes 25-44)
+   ------------------------------------------------------------
+   20 night/dark themes built on the same CSS custom property
+   pattern as the original 24 themes. Each block uses the
+   body[data-theme="THEME_ID"] selector and overrides every
+   variable defined in :root. A body[data-theme="THEME_ID"]::before
+   pseudo-element layers a subtle background pattern appropriate
+   to each theme (star fields, mist, embers, scanlines, etc.).
+   ============================================================ */
+
+
+/* ============================================================
+   THEME 25 — midnight (深夜)
+   Standard dark mode: near-black background, soft white text,
+   muted blue accent.
+   ============================================================ */
+body[data-theme="midnight"] {
+  --bg: #0a0a0f;
+  --bg-secondary: #12121a;
+  --surface: #1a1a24;
+  --surface-hover: #24242f;
+  --text: #f0f0f5;
+  --text-secondary: #c0c0d0;
+  --text-muted: #707080;
+  --accent: #4a6fa5;
+  --accent-soft: rgba(74, 111, 165, 0.18);
+  --accent-contrast: #ffffff;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.18);
+  --danger: #e53935;
+  --danger-soft: rgba(229, 57, 53, 0.18);
+  --warning: #ffb74d;
+  --warning-soft: rgba(255, 183, 77, 0.18);
+  --border: #2a2a38;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1a1a24;
+  --quiz-option-border: #2a2a38;
+  --quiz-option-hover: #24242f;
+}
+
+/* Midnight: faint starfield dot pattern. */
+body[data-theme="midnight"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.45) 0.5px, transparent 0.5px),
+    radial-gradient(rgba(192, 192, 208, 0.25) 0.5px, transparent 0.5px);
+  background-size: 120px 120px, 80px 80px;
+  background-position: 0 0, 40px 40px;
+  opacity: 0.6;
+}
+
+
+/* ============================================================
+   THEME 26 — vampire (吸血鬼)
+   Deep crimson black background, blood red accent, pale text.
+   ============================================================ */
+body[data-theme="vampire"] {
+  --bg: #1a0a0a;
+  --bg-secondary: #241010;
+  --surface: #2a1414;
+  --surface-hover: #341a1a;
+  --text: #f5e8e8;
+  --text-secondary: #d0b0b0;
+  --text-muted: #8a6060;
+  --accent: #8b0000;
+  --accent-soft: rgba(139, 0, 0, 0.22);
+  --accent-contrast: #f5e8e8;
+  --success: #6b8e23;
+  --success-soft: rgba(107, 142, 35, 0.2);
+  --danger: #c62828;
+  --danger-soft: rgba(198, 40, 40, 0.25);
+  --warning: #d97706;
+  --warning-soft: rgba(217, 119, 6, 0.2);
+  --border: #4a1a1a;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 0, 0, 0.18);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #2a1414;
+  --quiz-option-border: #4a1a1a;
+  --quiz-option-hover: #341a1a;
+}
+
+/* Vampire: dark blood-mist droplet pattern. */
+body[data-theme="vampire"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(139, 0, 0, 0.18) 1px, transparent 1px),
+    radial-gradient(rgba(90, 0, 0, 0.12) 2px, transparent 2px);
+  background-size: 24px 24px, 60px 60px;
+  background-position: 0 0, 12px 12px;
+  opacity: 0.5;
+}
+
+
+/* ============================================================
+   THEME 27 — halloween (万圣节)
+   Black background, orange accent with purple secondary.
+   ============================================================ */
+body[data-theme="halloween"] {
+  --bg: #0d0d0d;
+  --bg-secondary: #161616;
+  --surface: #1c1c1c;
+  --surface-hover: #262626;
+  --text: #ffe8cc;
+  --text-secondary: #d0a070;
+  --text-muted: #806040;
+  --accent: #ff6600;
+  --accent-soft: rgba(255, 102, 0, 0.2);
+  --accent-contrast: #0d0d0d;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.2);
+  --danger: #cc3300;
+  --danger-soft: rgba(204, 51, 0, 0.22);
+  --warning: #ffcc00;
+  --warning-soft: rgba(255, 204, 0, 0.2);
+  --border: #3a2410;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 18px rgba(255, 102, 0, 0.15);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1c1c1c;
+  --quiz-option-border: #3a2410;
+  --quiz-option-hover: #262626;
+}
+
+/* Halloween: scattered orange + purple speckle pattern. */
+body[data-theme="halloween"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255, 102, 0, 0.12) 1px, transparent 1px),
+    radial-gradient(rgba(128, 0, 128, 0.1) 2px, transparent 2px);
+  background-size: 30px 30px, 70px 70px;
+  background-position: 0 0, 15px 15px;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   THEME 28 — starry (星空)
+   Dark navy background, star-white text, silver accent.
+   ============================================================ */
+body[data-theme="starry"] {
+  --bg: #0a0e27;
+  --bg-secondary: #12162e;
+  --surface: #1a1e38;
+  --surface-hover: #242848;
+  --text: #f8f8ff;
+  --text-secondary: #c8c8e0;
+  --text-muted: #707090;
+  --accent: #c0c0c0;
+  --accent-soft: rgba(192, 192, 192, 0.18);
+  --accent-contrast: #0a0e27;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.18);
+  --danger: #e53935;
+  --danger-soft: rgba(229, 57, 53, 0.18);
+  --warning: #ffd700;
+  --warning-soft: rgba(255, 215, 0, 0.18);
+  --border: #2a2e48;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1a1e38;
+  --quiz-option-border: #2a2e48;
+  --quiz-option-hover: #242848;
+}
+
+/* Starry: layered multi-density star field. */
+body[data-theme="starry"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.7) 0.5px, transparent 0.5px),
+    radial-gradient(rgba(192, 192, 192, 0.5) 0.5px, transparent 0.5px),
+    radial-gradient(rgba(173, 216, 230, 0.4) 1px, transparent 1px);
+  background-size: 100px 100px, 60px 60px, 140px 140px;
+  background-position: 0 0, 30px 30px, 50px 70px;
+  opacity: 0.7;
+}
+
+
+/* ============================================================
+   THEME 29 — abyss (深渊)
+   Pure black background, faint purple accent, ghost-white text.
+   ============================================================ */
+body[data-theme="abyss"] {
+  --bg: #000000;
+  --bg-secondary: #0a0a0f;
+  --surface: #12121a;
+  --surface-hover: #1c1c26;
+  --text: #f8f8ff;
+  --text-secondary: #c0c0d0;
+  --text-muted: #606078;
+  --accent: #2a1a3e;
+  --accent-soft: rgba(42, 26, 62, 0.4);
+  --accent-contrast: #f8f8ff;
+  --success: #3a5a40;
+  --success-soft: rgba(58, 90, 64, 0.3);
+  --danger: #5a1a2a;
+  --danger-soft: rgba(90, 26, 42, 0.3);
+  --warning: #4a3a1a;
+  --warning-soft: rgba(74, 58, 26, 0.3);
+  --border: #1a1a24;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #12121a;
+  --quiz-option-border: #1a1a24;
+  --quiz-option-hover: #1c1c26;
+}
+
+/* Abyss: sparse ghost specks drifting in the deep. */
+body[data-theme="abyss"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(248, 248, 255, 0.35) 0.5px, transparent 0.5px),
+    radial-gradient(rgba(42, 26, 62, 0.5) 1px, transparent 1px);
+  background-size: 200px 200px, 90px 90px;
+  background-position: 0 0, 45px 45px;
+  opacity: 0.5;
+}
+
+
+/* ============================================================
+   THEME 30 — phantom (幽灵)
+   Dark grey background, translucent white accent.
+   ============================================================ */
+body[data-theme="phantom"] {
+  --bg: #1c1c1c;
+  --bg-secondary: #242424;
+  --surface: #2a2a2a;
+  --surface-hover: #343434;
+  --text: #f0f0f0;
+  --text-secondary: #c0c0c0;
+  --text-muted: #7a7a7a;
+  --accent: #e0e0e0;
+  --accent-soft: rgba(224, 224, 224, 0.15);
+  --accent-contrast: #1c1c1c;
+  --success: #8bc34a;
+  --success-soft: rgba(139, 195, 74, 0.15);
+  --danger: #ef5350;
+  --danger-soft: rgba(239, 83, 80, 0.15);
+  --warning: #ffd54f;
+  --warning-soft: rgba(255, 213, 79, 0.15);
+  --border: #3a3a3a;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55), 0 0 24px rgba(224, 224, 224, 0.08);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #2a2a2a;
+  --quiz-option-border: #3a3a3a;
+  --quiz-option-hover: #343434;
+}
+
+/* Phantom: soft translucent mist blotches. */
+body[data-theme="phantom"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(224, 224, 224, 0.08) 2px, transparent 2px),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 100px 100px;
+  background-position: 0 0, 25px 25px;
+  opacity: 0.5;
+}
+
+
+/* ============================================================
+   THEME 31 — eclipse (日蚀)
+   Dark corona background, gold ring accent.
+   ============================================================ */
+body[data-theme="eclipse"] {
+  --bg: #0d0a14;
+  --bg-secondary: #16121e;
+  --surface: #1e1a28;
+  --surface-hover: #282434;
+  --text: #f0e8d0;
+  --text-secondary: #c8b878;
+  --text-muted: #80704a;
+  --accent: #ffd700;
+  --accent-soft: rgba(255, 215, 0, 0.18);
+  --accent-contrast: #0d0a14;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.18);
+  --danger: #e53935;
+  --danger-soft: rgba(229, 57, 53, 0.18);
+  --warning: #ffb300;
+  --warning-soft: rgba(255, 179, 0, 0.2);
+  --border: #2e2838;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.18);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1e1a28;
+  --quiz-option-border: #2e2838;
+  --quiz-option-hover: #282434;
+}
+
+/* Eclipse: corona halo glow with gold speckle. */
+body[data-theme="eclipse"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255, 215, 0, 0.18) 0%, rgba(255, 215, 0, 0.08) 6%, transparent 12%),
+    radial-gradient(rgba(255, 215, 0, 0.08) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px;
+  background-position: 0 0, 0 0;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   THEME 32 — noir (黑色电影)
+   Pure black background, stark white text, high contrast.
+   ============================================================ */
+body[data-theme="noir"] {
+  --bg: #0a0a0a;
+  --bg-secondary: #141414;
+  --surface: #1a1a1a;
+  --surface-hover: #242424;
+  --text: #ffffff;
+  --text-secondary: #d0d0d0;
+  --text-muted: #808080;
+  --accent: #ffffff;
+  --accent-soft: rgba(255, 255, 255, 0.12);
+  --accent-contrast: #0a0a0a;
+  --success: #9ccc9c;
+  --success-soft: rgba(156, 204, 156, 0.15);
+  --danger: #ff5555;
+  --danger-soft: rgba(255, 85, 85, 0.15);
+  --warning: #cccccc;
+  --warning-soft: rgba(204, 204, 204, 0.15);
+  --border: #2a2a2a;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.75);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1a1a1a;
+  --quiz-option-border: #2a2a2a;
+  --quiz-option-hover: #242424;
+}
+
+/* Noir: faint venetian-blind slash grid. */
+body[data-theme="noir"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0, rgba(255, 255, 255, 0.025) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 80px);
+  opacity: 0.6;
+}
+
+
+/* ============================================================
+   THEME 33 — galaxy (银河)
+   Deep purple background, pink/blue swirl accent.
+   ============================================================ */
+body[data-theme="galaxy"] {
+  --bg: #0d0a1a;
+  --bg-secondary: #16122a;
+  --surface: #1e1a36;
+  --surface-hover: #282446;
+  --text: #f0e8ff;
+  --text-secondary: #c0b0e0;
+  --text-muted: #8070a0;
+  --accent: #b388ff;
+  --accent-soft: rgba(179, 136, 255, 0.2);
+  --accent-contrast: #0d0a1a;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.18);
+  --danger: #ff5252;
+  --danger-soft: rgba(255, 82, 82, 0.18);
+  --warning: #ffd740;
+  --warning-soft: rgba(255, 215, 64, 0.18);
+  --border: #2e2848;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 24px rgba(179, 136, 255, 0.18);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1e1a36;
+  --quiz-option-border: #2e2848;
+  --quiz-option-hover: #282446;
+}
+
+/* Galaxy: pink/purple nebula swirl with star dust. */
+body[data-theme="galaxy"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(179, 136, 255, 0.18) 0%, transparent 35%),
+    radial-gradient(ellipse at 70% 60%, rgba(255, 105, 180, 0.12) 0%, transparent 35%),
+    radial-gradient(rgba(255, 255, 255, 0.4) 0.5px, transparent 0.5px);
+  background-size: 100% 100%, 100% 100%, 120px 120px;
+  background-position: 0 0, 0 0, 0 0;
+  opacity: 0.6;
+}
+
+
+/* ============================================================
+   THEME 34 — witch (女巫)
+   Dark forest green-black background, emerald accent.
+   ============================================================ */
+body[data-theme="witch"] {
+  --bg: #0a1a0d;
+  --bg-secondary: #12241a;
+  --surface: #1a2e22;
+  --surface-hover: #24382c;
+  --text: #e0f0e0;
+  --text-secondary: #b0c8b0;
+  --text-muted: #6a806a;
+  --accent: #00897b;
+  --accent-soft: rgba(0, 137, 123, 0.22);
+  --accent-contrast: #0a1a0d;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.22);
+  --danger: #d32f2f;
+  --danger-soft: rgba(211, 47, 47, 0.22);
+  --warning: #ffb300;
+  --warning-soft: rgba(255, 179, 0, 0.22);
+  --border: #2a3a30;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 137, 123, 0.15);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1a2e22;
+  --quiz-option-border: #2a3a30;
+  --quiz-option-hover: #24382c;
+}
+
+/* Witch: emerald spark dust drifting through the forest. */
+body[data-theme="witch"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(0, 137, 123, 0.12) 1px, transparent 1px),
+    radial-gradient(rgba(76, 175, 80, 0.1) 2px, transparent 2px);
+  background-size: 32px 32px, 80px 80px;
+  background-position: 0 0, 16px 16px;
+  opacity: 0.5;
+}
+
+
+/* ============================================================
+   THEME 35 — moonlight (月光)
+   Dark blue background, silver-white accent.
+   ============================================================ */
+body[data-theme="moonlight"] {
+  --bg: #0a1620;
+  --bg-secondary: #121e2a;
+  --surface: #1a2632;
+  --surface-hover: #243040;
+  --text: #e8f0f5;
+  --text-secondary: #b8c8d0;
+  --text-muted: #6a8090;
+  --accent: #b0bec5;
+  --accent-soft: rgba(176, 190, 197, 0.18);
+  --accent-contrast: #0a1620;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.18);
+  --danger: #e57373;
+  --danger-soft: rgba(229, 115, 115, 0.18);
+  --warning: #ffd54f;
+  --warning-soft: rgba(255, 213, 79, 0.18);
+  --border: #2a3640;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55), 0 0 24px rgba(176, 190, 197, 0.12);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1a2632;
+  --quiz-option-border: #2a3640;
+  --quiz-option-hover: #243040;
+}
+
+/* Moonlight: soft moon glow with silver dust. */
+body[data-theme="moonlight"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(232, 240, 245, 0.25) 0%, rgba(232, 240, 245, 0.08) 8%, transparent 14%),
+    radial-gradient(rgba(176, 190, 197, 0.4) 0.5px, transparent 0.5px),
+    radial-gradient(rgba(255, 255, 255, 0.25) 0.5px, transparent 0.5px);
+  background-size: 100% 100%, 80px 80px, 140px 140px;
+  background-position: 0 0, 0 0, 40px 40px;
+  opacity: 0.6;
+}
+
+
+/* ============================================================
+   THEME 36 — shadow (暗影)
+   Charcoal background, dark grey gradient, steel accent.
+   ============================================================ */
+body[data-theme="shadow"] {
+  --bg: #1a1a1e;
+  --bg-secondary: #222226;
+  --surface: #28282e;
+  --surface-hover: #323238;
+  --text: #e8e8ec;
+  --text-secondary: #b0b0b4;
+  --text-muted: #6a6a70;
+  --accent: #546e7a;
+  --accent-soft: rgba(84, 110, 122, 0.22);
+  --accent-contrast: #e8e8ec;
+  --success: #8bc34a;
+  --success-soft: rgba(139, 195, 74, 0.18);
+  --danger: #ef5350;
+  --danger-soft: rgba(239, 83, 80, 0.18);
+  --warning: #ffd54f;
+  --warning-soft: rgba(255, 213, 79, 0.18);
+  --border: #3a3a40;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #28282e;
+  --quiz-option-border: #3a3a40;
+  --quiz-option-hover: #323238;
+}
+
+/* Shadow: diagonal charcoal-to-steel gradient wash. */
+body[data-theme="shadow"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg,
+    rgba(84, 110, 122, 0.1) 0%,
+    transparent 35%,
+    rgba(40, 40, 46, 0.4) 70%,
+    rgba(84, 110, 122, 0.06) 100%);
+  opacity: 0.7;
+}
+
+
+/* ============================================================
+   THEME 37 — batcave (蝙蝠洞)
+   Dark stone background, bat-grey accent.
+   ============================================================ */
+body[data-theme="batcave"] {
+  --bg: #12121a;
+  --bg-secondary: #1a1a22;
+  --surface: #202028;
+  --surface-hover: #2a2a34;
+  --text: #e8e8f0;
+  --text-secondary: #b0b0b8;
+  --text-muted: #6a6a74;
+  --accent: #424242;
+  --accent-soft: rgba(66, 66, 66, 0.4);
+  --accent-contrast: #e8e8f0;
+  --success: #8bc34a;
+  --success-soft: rgba(139, 195, 74, 0.18);
+  --danger: #ef5350;
+  --danger-soft: rgba(239, 83, 80, 0.18);
+  --warning: #ffd54f;
+  --warning-soft: rgba(255, 213, 79, 0.18);
+  --border: #2e2e38;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #202028;
+  --quiz-option-border: #2e2e38;
+  --quiz-option-hover: #2a2a34;
+}
+
+/* Batcave: rough stone-grain speckle. */
+body[data-theme="batcave"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(120, 120, 130, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(66, 66, 66, 0.1) 2px, transparent 2px);
+  background-size: 24px 24px, 60px 60px;
+  background-position: 0 0, 12px 12px;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   THEME 38 — crystal-night (水晶夜)
+   Dark teal background, crystal cyan accent.
+   ============================================================ */
+body[data-theme="crystal-night"] {
+  --bg: #0a1a1e;
+  --bg-secondary: #122226;
+  --surface: #1a2e32;
+  --surface-hover: #24383e;
+  --text: #e0f0f0;
+  --text-secondary: #a8c8c8;
+  --text-muted: #5a8080;
+  --accent: #00bcd4;
+  --accent-soft: rgba(0, 188, 212, 0.2);
+  --accent-contrast: #0a1a1e;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.2);
+  --danger: #ef5350;
+  --danger-soft: rgba(239, 83, 80, 0.2);
+  --warning: #ffd54f;
+  --warning-soft: rgba(255, 213, 79, 0.2);
+  --border: #2a3e42;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 188, 212, 0.18);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1a2e32;
+  --quiz-option-border: #2a3e42;
+  --quiz-option-hover: #24383e;
+}
+
+/* Crystal-night: cyan crystal facet shimmer. */
+body[data-theme="crystal-night"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(0, 188, 212, 0.14) 1px, transparent 1px),
+    radial-gradient(rgba(224, 240, 240, 0.3) 0.5px, transparent 0.5px);
+  background-size: 36px 36px, 90px 90px;
+  background-position: 0 0, 18px 18px;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   THEME 39 — dreamless (无梦)
+   Deep indigo background, dreamy purple accent.
+   ============================================================ */
+body[data-theme="dreamless"] {
+  --bg: #0d0d2a;
+  --bg-secondary: #16163a;
+  --surface: #1e1e48;
+  --surface-hover: #282858;
+  --text: #e8e8ff;
+  --text-secondary: #b8b8e0;
+  --text-muted: #6a6a98;
+  --accent: #5c6bc0;
+  --accent-soft: rgba(92, 107, 192, 0.22);
+  --accent-contrast: #0d0d2a;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.2);
+  --danger: #ef5350;
+  --danger-soft: rgba(239, 83, 80, 0.2);
+  --warning: #ffd54f;
+  --warning-soft: rgba(255, 213, 79, 0.2);
+  --border: #2e2e58;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55), 0 0 24px rgba(92, 107, 192, 0.16);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1e1e48;
+  --quiz-option-border: #2e2e58;
+  --quiz-option-hover: #282858;
+}
+
+/* Dreamless: soft purple haze with dream dust. */
+body[data-theme="dreamless"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 60% 40%, rgba(92, 107, 192, 0.16) 0%, transparent 50%),
+    radial-gradient(rgba(232, 232, 255, 0.25) 0.5px, transparent 0.5px);
+  background-size: 100% 100%, 100px 100px;
+  background-position: 0 0, 0 0;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   THEME 40 — ember (余烬)
+   Dark charcoal background, glowing orange accent.
+   ============================================================ */
+body[data-theme="ember"] {
+  --bg: #1a0e0a;
+  --bg-secondary: #241610;
+  --surface: #2a1c16;
+  --surface-hover: #34261e;
+  --text: #ffe8d0;
+  --text-secondary: #d0a878;
+  --text-muted: #8a6a4a;
+  --accent: #ff6f00;
+  --accent-soft: rgba(255, 111, 0, 0.22);
+  --accent-contrast: #1a0e0a;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.2);
+  --danger: #e53935;
+  --danger-soft: rgba(229, 57, 53, 0.22);
+  --warning: #ffb300;
+  --warning-soft: rgba(255, 179, 0, 0.22);
+  --border: #3a2a20;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55), 0 0 24px rgba(255, 111, 0, 0.18);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #2a1c16;
+  --quiz-option-border: #3a2a20;
+  --quiz-option-hover: #34261e;
+}
+
+/* Ember: scattered glowing coal flecks. */
+body[data-theme="ember"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255, 111, 0, 0.18) 1px, transparent 1px),
+    radial-gradient(rgba(255, 179, 0, 0.12) 2px, transparent 2px),
+    radial-gradient(rgba(255, 87, 34, 0.1) 1px, transparent 1px);
+  background-size: 28px 28px, 64px 64px, 40px 40px;
+  background-position: 0 0, 14px 14px, 20px 20px;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   THEME 41 — frost-night (霜夜)
+   Dark blue-grey background, ice blue accent.
+   ============================================================ */
+body[data-theme="frost-night"] {
+  --bg: #0e1a24;
+  --bg-secondary: #16222e;
+  --surface: #1c2e3a;
+  --surface-hover: #263848;
+  --text: #e8f4ff;
+  --text-secondary: #a8c8d8;
+  --text-muted: #5a8090;
+  --accent: #4fc3f7;
+  --accent-soft: rgba(79, 195, 247, 0.2);
+  --accent-contrast: #0e1a24;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.2);
+  --danger: #ef5350;
+  --danger-soft: rgba(239, 83, 80, 0.2);
+  --warning: #ffd54f;
+  --warning-soft: rgba(255, 213, 79, 0.2);
+  --border: #2a3a48;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55), 0 0 24px rgba(79, 195, 247, 0.16);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #1c2e3a;
+  --quiz-option-border: #2a3a48;
+  --quiz-option-hover: #263848;
+}
+
+/* Frost-night: ice crystal dusting. */
+body[data-theme="frost-night"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(79, 195, 247, 0.16) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.3) 0.5px, transparent 0.5px);
+  background-size: 30px 30px, 80px 80px;
+  background-position: 0 0, 15px 15px;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   THEME 42 — matrix (矩阵)
+   Pure black background, matrix green accent.
+   ============================================================ */
+body[data-theme="matrix"] {
+  --bg: #000000;
+  --bg-secondary: #0a0a0a;
+  --surface: #0a0f0a;
+  --surface-hover: #0f1a0f;
+  --text: #00ff00;
+  --text-secondary: #00cc00;
+  --text-muted: #006600;
+  --accent: #00ff00;
+  --accent-soft: rgba(0, 255, 0, 0.15);
+  --accent-contrast: #000000;
+  --success: #00ff00;
+  --success-soft: rgba(0, 255, 0, 0.15);
+  --danger: #ff3333;
+  --danger-soft: rgba(255, 51, 51, 0.15);
+  --warning: #ffff00;
+  --warning-soft: rgba(255, 255, 0, 0.15);
+  --border: #003300;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 0 18px rgba(0, 255, 0, 0.2);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #0a0f0a;
+  --quiz-option-border: #003300;
+  --quiz-option-hover: #0f1a0f;
+}
+
+/* Matrix: green scanlines with falling code dots. */
+body[data-theme="matrix"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.06) 0, rgba(0, 255, 0, 0.06) 1px, transparent 1px, transparent 3px),
+    radial-gradient(rgba(0, 255, 0, 0.12) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px;
+  background-position: 0 0, 0 0;
+  opacity: 0.5;
+}
+
+
+/* ============================================================
+   THEME 43 — void (虚空)
+   Pure black background, void purple accent, white specks.
+   ============================================================ */
+body[data-theme="void"] {
+  --bg: #000000;
+  --bg-secondary: #0a0a14;
+  --surface: #12121e;
+  --surface-hover: #1c1c2a;
+  --text: #f0f0ff;
+  --text-secondary: #c0c0d8;
+  --text-muted: #606078;
+  --accent: #1a0033;
+  --accent-soft: rgba(26, 0, 51, 0.6);
+  --accent-contrast: #f0f0ff;
+  --success: #2a5a2a;
+  --success-soft: rgba(42, 90, 42, 0.3);
+  --danger: #5a1a2a;
+  --danger-soft: rgba(90, 26, 42, 0.3);
+  --warning: #4a3a1a;
+  --warning-soft: rgba(74, 58, 26, 0.3);
+  --border: #1a1a26;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #12121e;
+  --quiz-option-border: #1a1a26;
+  --quiz-option-hover: #1c1c2a;
+}
+
+/* Void: sparse white specks in deep purple emptiness. */
+body[data-theme="void"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.7) 0.5px, transparent 0.5px),
+    radial-gradient(rgba(26, 0, 51, 0.6) 1px, transparent 1px),
+    radial-gradient(rgba(192, 192, 224, 0.4) 0.5px, transparent 0.5px);
+  background-size: 180px 180px, 100px 100px, 240px 240px;
+  background-position: 0 0, 50px 50px, 90px 120px;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   THEME 44 — midnight-rose (暗夜玫瑰)
+   Dark wine background, deep rose accent.
+   ============================================================ */
+body[data-theme="midnight-rose"] {
+  --bg: #1a0a14;
+  --bg-secondary: #24121e;
+  --surface: #2a1828;
+  --surface-hover: #342234;
+  --text: #ffe0ec;
+  --text-secondary: #d0a8b8;
+  --text-muted: #8a6a78;
+  --accent: #c2185b;
+  --accent-soft: rgba(194, 24, 91, 0.22);
+  --accent-contrast: #ffffff;
+  --success: #4caf50;
+  --success-soft: rgba(76, 175, 80, 0.2);
+  --danger: #e53935;
+  --danger-soft: rgba(229, 57, 53, 0.22);
+  --warning: #ffb300;
+  --warning-soft: rgba(255, 179, 0, 0.22);
+  --border: #3a2030;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.55), 0 0 24px rgba(194, 24, 91, 0.18);
+  --font-family: "Hiragino Sans", "Noto Sans CJK SC", sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+  --quiz-option-bg: #2a1828;
+  --quiz-option-border: #3a2030;
+  --quiz-option-hover: #342234;
+}
+
+/* Midnight-rose: drifting rose-petal speckle. */
+body[data-theme="midnight-rose"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(194, 24, 91, 0.14) 1px, transparent 1px),
+    radial-gradient(rgba(255, 224, 236, 0.18) 0.5px, transparent 0.5px);
+  background-size: 28px 28px, 70px 70px;
+  background-position: 0 0, 14px 14px;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   END OF NIGHT / DARK THEME COLLECTION
+   Scanline override extension: register the new dark night
+   themes with the lighter scanline tint so the CRT overlay
+   stays visible against their dark backgrounds.
+   ============================================================ */
+[data-theme="midnight"] .theme-effect-scanline::before,
+[data-theme="vampire"] .theme-effect-scanline::before,
+[data-theme="halloween"] .theme-effect-scanline::before,
+[data-theme="starry"] .theme-effect-scanline::before,
+[data-theme="abyss"] .theme-effect-scanline::before,
+[data-theme="phantom"] .theme-effect-scanline::before,
+[data-theme="eclipse"] .theme-effect-scanline::before,
+[data-theme="noir"] .theme-effect-scanline::before,
+[data-theme="galaxy"] .theme-effect-scanline::before,
+[data-theme="witch"] .theme-effect-scanline::before,
+[data-theme="moonlight"] .theme-effect-scanline::before,
+[data-theme="shadow"] .theme-effect-scanline::before,
+[data-theme="batcave"] .theme-effect-scanline::before,
+[data-theme="crystal-night"] .theme-effect-scanline::before,
+[data-theme="dreamless"] .theme-effect-scanline::before,
+[data-theme="ember"] .theme-effect-scanline::before,
+[data-theme="frost-night"] .theme-effect-scanline::before,
+[data-theme="matrix"] .theme-effect-scanline::before,
+[data-theme="void"] .theme-effect-scanline::before,
+[data-theme="midnight-rose"] .theme-effect-scanline::before {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.35) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: screen;
+  opacity: 0.5;
+}
