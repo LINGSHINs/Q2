@@ -69,6 +69,9 @@ var ThemeFX = {
     'matrix':         { type: 'matrix',      color: '#00ff00', count: 30, size: [8, 16], speed: [1, 3],      opacity: [0.1, 0.5] },
     'void':           { type: 'voidspeck',   color: '#ffffff', count: 15, size: [1, 2],  speed: [0, 0.05],   opacity: [0.1, 0.4] },
     'midnight-rose':  { type: 'petal',       color: '#c2185b', count: 20, size: [4, 8],  speed: [0.2, 0.5],  opacity: [0.2, 0.5] },
+
+    /* ===== Liquid Glass Theme ===== */
+    'liquid-glass':   { type: 'glassmote',   color: '#007aff', count: 25, size: [2, 5],  speed: [0.1, 0.3],  opacity: [0.05, 0.2] },
   },
 
   init: function() {
@@ -283,6 +286,7 @@ var ThemeFX = {
         p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase * 2)) * (cfg.opacity[1] - cfg.opacity[0]);
         break;
       case 'stardust': case 'voideye': case 'voidspeck': case 'noirgrain':
+      case 'glassmote':
         p.x += p.vx; p.y += p.vy;
         p.opacity = cfg.opacity[0] + Math.abs(Math.sin(p.phase * 0.5)) * (cfg.opacity[1] - cfg.opacity[0]);
         break;
@@ -534,6 +538,26 @@ var ThemeFX = {
         ctx.fill();
         break;
 
+      /* ===== Liquid Glass Particles ===== */
+      case 'glassmote': {
+        var gg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
+        gg.addColorStop(0, p.color + '40');
+        gg.addColorStop(0.5, p.color + '20');
+        gg.addColorStop(1, p.color + '00');
+        ctx.fillStyle = gg;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
+        ctx.fill();
+        // Inner bright dot
+        ctx.fillStyle = p.color + '80';
+        ctx.globalAlpha = p.opacity * 1.5;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = p.opacity;
+        break;
+      }
+
       case 'twinkle': {
         var tg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
         tg.addColorStop(0, p.color);
@@ -740,6 +764,7 @@ var ThemeFX = {
       case 'firefly': case 'neon': case 'moonbeam': case 'mote': case 'dust': case 'sand': case 'inkdrop':
       case 'stardust': case 'voideye': case 'voidspeck': case 'noirgrain': case 'twinkle':
       case 'galaxy': case 'shadow': case 'crystal': case 'dreamshard': case 'corona':
+      case 'glassmote':
         p.y = Math.random() * this.h; break;
       case 'cloud':
         p.y = Math.random() * this.h * 0.5; p.x = -p.size; break;

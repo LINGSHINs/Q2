@@ -21,9 +21,11 @@ const App = {
     customLight: null,
     customBrightness: null,
     fontSize: 16,
+    fontFamily: 'default',
     showAnswerImmediately: true,
     autoNext: false,
     effectsEnabled: true,
+    glassTransparency: 0.72,
   },
   currentMode: null,
   currentQuiz: null,
@@ -32,53 +34,69 @@ const App = {
 
 /* ===== Theme List ===== */
 const THEMES = [
-  { id: 'japanese', name: '和風', desc: '日系简约', night: false },
-  { id: 'ink', name: '墨韵', desc: '水墨黑白', night: false },
-  { id: 'sakura', name: '樱花', desc: '柔粉', night: false },
-  { id: 'zen', name: '枯山水', desc: '禅意砂色', night: false },
-  { id: 'pokemon-gba', name: '宝可梦GBA', desc: '点阵绿屏', night: false },
-  { id: 'cyberpunk', name: '赛博朋克', desc: '霓虹光污', night: false },
-  { id: 'stardew', name: '星露谷', desc: '像素田园', night: false },
-  { id: 'shinkai', name: '新海诚', desc: '漫画天空', night: false },
-  { id: 'deepsea', name: '深海', desc: '幽蓝深邃', night: false },
-  { id: 'forest', name: '森林', desc: '自然绿意', night: false },
-  { id: 'twilight', name: '暮色', desc: '紫橙渐变', night: false },
-  { id: 'aurora', name: '极光', desc: '极光流彩', night: false },
-  { id: 'warmsun', name: '暖阳', desc: '暖黄', night: false },
-  { id: 'coldmoon', name: '冷月', desc: '银灰清冷', night: false },
-  { id: 'redplum', name: '红梅', desc: '朱红点缀', night: false },
-  { id: 'bamboo', name: '竹林', desc: '翠竹', night: false },
-  { id: 'forbidden', name: '紫禁', desc: '宫墙金', night: false },
-  { id: 'obsidian', name: '黑曜', desc: '暗黑材质', night: false },
-  { id: 'ricepaper', name: '宣纸', desc: '纸质暖色', night: false },
-  { id: 'mint', name: '薄荷', desc: '清凉绿', night: false },
-  { id: 'rosegold', name: '玫瑰金', desc: '玫瑰金属', night: false },
-  { id: 'neon-night', name: '霓虹夜', desc: '暗夜霓虹', night: false },
-  { id: 'retro', name: '复古', desc: '怀旧棕', night: false },
-  { id: 'blueporcelain', name: '蓝瓷', desc: '青花瓷', night: false },
-  { id: 'midnight', name: '深夜', desc: '标准夜间', night: true },
-  { id: 'vampire', name: '吸血鬼', desc: '血色暗夜', night: true },
-  { id: 'halloween', name: '万圣节', desc: '南瓜幽灵', night: true },
-  { id: 'starry', name: '星空', desc: '繁星闪烁', night: true },
-  { id: 'abyss', name: '深渊', desc: '虚空凝视', night: true },
-  { id: 'phantom', name: '幽灵', desc: '飘渺幽魂', night: true },
-  { id: 'eclipse', name: '日蚀', desc: '日冕金环', night: true },
-  { id: 'noir', name: '黑色电影', desc: '高对比黑白', night: true },
-  { id: 'galaxy', name: '銀河', desc: '星云漩涡', night: true },
-  { id: 'witch', name: '女巫', desc: '暗夜魔法', night: true },
-  { id: 'moonlight', name: '月光', desc: '银色月华', night: true },
-  { id: 'shadow', name: '暗影', desc: '影之领域', night: true },
-  { id: 'batcave', name: '蝙蝠洞', desc: '暗石幽穴', night: true },
-  { id: 'crystal-night', name: '水晶夜', desc: '冰晶折射', night: true },
-  { id: 'dreamless', name: '无梦', desc: '梦境碎片', night: true },
-  { id: 'ember', name: '余烬', desc: '炭火星光', night: true },
-  { id: 'frost-night', name: '霜夜', desc: '霜花飞舞', night: true },
-  { id: 'matrix', name: '矩阵', desc: '数字雨', night: true },
-  { id: 'void', name: '虚空', desc: '绝对虚无', night: true },
-  { id: 'midnight-rose', name: '暗夜玫瑰', desc: '血色玫瑰', night: true },
+  { id: 'japanese', name: '和風', desc: '日系简约', night: false, icon: '🏯' },
+  { id: 'ink', name: '墨韵', desc: '水墨黑白', night: false, icon: '🖋️' },
+  { id: 'sakura', name: '樱花', desc: '柔粉', night: false, icon: '🌸' },
+  { id: 'zen', name: '枯山水', desc: '禅意砂色', night: false, icon: '🪨' },
+  { id: 'pokemon-gba', name: '宝可梦GBA', desc: '点阵绿屏', night: false, icon: '🎮' },
+  { id: 'cyberpunk', name: '赛博朋克', desc: '霓虹光污', night: false, icon: '🌃' },
+  { id: 'stardew', name: '星露谷', desc: '像素田园', night: false, icon: '🌾' },
+  { id: 'shinkai', name: '新海诚', desc: '漫画天空', night: false, icon: '☁️' },
+  { id: 'deepsea', name: '深海', desc: '幽蓝深邃', night: false, icon: '🌊' },
+  { id: 'forest', name: '森林', desc: '自然绿意', night: false, icon: '🌲' },
+  { id: 'twilight', name: '暮色', desc: '紫橙渐变', night: false, icon: '🌆' },
+  { id: 'aurora', name: '极光', desc: '极光流彩', night: false, icon: '🌈' },
+  { id: 'warmsun', name: '暖阳', desc: '暖黄', night: false, icon: '☀️' },
+  { id: 'coldmoon', name: '冷月', desc: '银灰清冷', night: false, icon: '🌙' },
+  { id: 'redplum', name: '红梅', desc: '朱红点缀', night: false, icon: '🌺' },
+  { id: 'bamboo', name: '竹林', desc: '翠竹', night: false, icon: '🎋' },
+  { id: 'forbidden', name: '紫禁', desc: '宫墙金', night: false, icon: '🏮' },
+  { id: 'obsidian', name: '黑曜', desc: '暗黑材质', night: false, icon: '🖤' },
+  { id: 'ricepaper', name: '宣纸', desc: '纸质暖色', night: false, icon: '📜' },
+  { id: 'mint', name: '薄荷', desc: '清凉绿', night: false, icon: '🍃' },
+  { id: 'rosegold', name: '玫瑰金', desc: '玫瑰金属', night: false, icon: '🌹' },
+  { id: 'neon-night', name: '霓虹夜', desc: '暗夜霓虹', night: false, icon: '💡' },
+  { id: 'retro', name: '复古', desc: '怀旧棕', night: false, icon: '📻' },
+  { id: 'blueporcelain', name: '蓝瓷', desc: '青花瓷', night: false, icon: '🏺' },
+  { id: 'liquid-glass', name: '液态玻璃', desc: 'iOS 27 适配', night: false, icon: '🫧' },
+  { id: 'midnight', name: '深夜', desc: '标准夜间', night: true, icon: '🌘' },
+  { id: 'vampire', name: '吸血鬼', desc: '血色暗夜', night: true, icon: '🦇' },
+  { id: 'halloween', name: '万圣节', desc: '南瓜幽灵', night: true, icon: '🎃' },
+  { id: 'starry', name: '星空', desc: '繁星闪烁', night: true, icon: '✨' },
+  { id: 'abyss', name: '深渊', desc: '虚空凝视', night: true, icon: '👁️' },
+  { id: 'phantom', name: '幽灵', desc: '飘渺幽魂', night: true, icon: '👻' },
+  { id: 'eclipse', name: '日蚀', desc: '日冕金环', night: true, icon: '🌗' },
+  { id: 'noir', name: '黑色电影', desc: '高对比黑白', night: true, icon: '🕵️' },
+  { id: 'galaxy', name: '銀河', desc: '星云漩涡', night: true, icon: '🌌' },
+  { id: 'witch', name: '女巫', desc: '暗夜魔法', night: true, icon: '🔮' },
+  { id: 'moonlight', name: '月光', desc: '银色月华', night: true, icon: '🌕' },
+  { id: 'shadow', name: '暗影', desc: '影之领域', night: true, icon: '🕴️' },
+  { id: 'batcave', name: '蝙蝠洞', desc: '暗石幽穴', night: true, icon: '🕳️' },
+  { id: 'crystal-night', name: '水晶夜', desc: '冰晶折射', night: true, icon: '💎' },
+  { id: 'dreamless', name: '无梦', desc: '梦境碎片', night: true, icon: '💤' },
+  { id: 'ember', name: '余烬', desc: '炭火星光', night: true, icon: '🔥' },
+  { id: 'frost-night', name: '霜夜', desc: '霜花飞舞', night: true, icon: '❄️' },
+  { id: 'matrix', name: '矩阵', desc: '数字雨', night: true, icon: '💊' },
+  { id: 'void', name: '虚空', desc: '绝对虚无', night: true, icon: '⬛' },
+  { id: 'midnight-rose', name: '暗夜玫瑰', desc: '血色玫瑰', night: true, icon: '🥀' },
 ];
 
 /* ===== Mode Definitions ===== */
+const FONTS = [
+  { id: 'default', name: '系统默认', stack: 'var(--font-family)' },
+  { id: 'noto-sans', name: '思源黑体', stack: '"Noto Sans CJK SC", "Noto Sans SC", sans-serif' },
+  { id: 'noto-serif', name: '思源宋体', stack: '"Noto Serif CJK SC", "Noto Serif SC", serif' },
+  { id: 'hiragino', name: '苹果方体', stack: '"Hiragino Sans GB", "Hiragino Sans", sans-serif' },
+  { id: 'pingfang', name: '苹方', stack: '"PingFang SC", "PingFang", sans-serif' },
+  { id: 'microsoft-yahei', name: '微软雅黑', stack: '"Microsoft YaHei", "微软雅黑", sans-serif' },
+  { id: 'lxgw-wenkai', name: '霞鹜文楷', stack: '"LXGW WenKai", "LXGW WenKai Screen", serif' },
+  { id: 'source-han-mono', name: '等宽思源', stack: '"Source Han Mono SC", "Noto Sans Mono CJK SC", monospace' },
+  { id: 'georgia', name: 'Georgia', stack: 'Georgia, "Noto Serif CJK SC", serif' },
+  { id: 'lora', name: 'Lora', stack: '"Lora", "Noto Serif CJK SC", serif' },
+  { id: 'inter', name: 'Inter', stack: '"Inter", "Noto Sans CJK SC", sans-serif' },
+  { id: 'jetbrains-mono', name: 'JetBrains Mono', stack: '"JetBrains Mono", "Noto Sans Mono CJK SC", monospace' },
+];
+
 const MODES = [
   { id: 'daily', name: '每日挑战', desc: '每日10题挑战', icon: 'star' },
   { id: 'sequential', name: '顺序刷题', desc: '按序号逐题练习', icon: 'list' },
@@ -338,18 +356,29 @@ const ThemeMgr = {
     root.style.removeProperty('--hue');
     root.style.removeProperty('--sat');
     root.style.removeProperty('--light');
+    // Apply custom font family
+    const fontDef = FONTS.find(f => f.id === App.settings.fontFamily);
+    if (fontDef && fontDef.id !== 'default') {
+      root.style.setProperty('--font-family', fontDef.stack);
+    } else {
+      root.style.removeProperty('--font-family');
+    }
+    // Apply font size
+    root.style.fontSize = App.settings.fontSize + 'px';
     // Remove effect classes
-    document.body.classList.remove('theme-effect-pixel', 'theme-effect-glow', 'theme-effect-gradient-bg', 'theme-effect-scanline');
+    document.body.classList.remove('theme-effect-pixel', 'theme-effect-glow', 'theme-effect-gradient-bg', 'theme-effect-scanline', 'theme-effect-glass');
     if (t === 'pokemon-gba' || t === 'stardew') document.body.classList.add('theme-effect-pixel');
     if (t === 'cyberpunk' || t === 'neon-night') document.body.classList.add('theme-effect-glow');
     if (t === 'shinkai' || t === 'aurora' || t === 'twilight') document.body.classList.add('theme-effect-gradient-bg');
     if (t === 'pokemon-gba') document.body.classList.add('theme-effect-scanline');
+    if (t === 'liquid-glass') {
+      document.body.classList.add('theme-effect-glass');
+      root.style.setProperty('--glass-transparency', App.settings.glassTransparency);
+    }
     // Custom color overrides
     if (App.settings.customHue !== null) {
       this.applyCustomColors();
     }
-    // Font size
-    document.documentElement.style.fontSize = App.settings.fontSize + 'px';
     // Start particle effects
     if (typeof ThemeFX !== 'undefined') {
       if (App.settings.effectsEnabled) {
@@ -1878,6 +1907,15 @@ function renderSettings() {
           </label>
         </div>
       </div>
+      <div class="settings-row" id="glass-slider-row" style="${App.settings.theme==='liquid-glass'?'':'display:none'}">
+        <div>
+          <div class="settings-row-label">液态玻璃透明度</div>
+          <div class="settings-row-desc">iOS 27 透明度滑块</div>
+        </div>
+        <div class="settings-row-control">
+          <input type="range" id="set-glass-transparency" min="0.3" max="0.95" step="0.05" value="${App.settings.glassTransparency}" style="width:100px;accent-color:var(--accent);">
+        </div>
+      </div>
     </div>
     <div class="settings-group">
       <div class="settings-row">
@@ -1891,6 +1929,17 @@ function renderSettings() {
             <option value="16" ${App.settings.fontSize==16?'selected':''}>中</option>
             <option value="18" ${App.settings.fontSize==18?'selected':''}>大</option>
             <option value="20" ${App.settings.fontSize==20?'selected':''}>特大</option>
+          </select>
+        </div>
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-row-label">字体选择</div>
+          <div class="settings-row-desc">更换阅读字体（12种可选）</div>
+        </div>
+        <div class="settings-row-control">
+          <select class="settings-select" id="set-fontfamily">
+            ${FONTS.map(f => `<option value="${f.id}" ${App.settings.fontFamily===f.id?'selected':''}>${f.name}</option>`).join('')}
           </select>
         </div>
       </div>
@@ -1960,6 +2009,17 @@ function renderSettings() {
     }
   };
   $('set-fontsize').onchange = (e) => { App.settings.fontSize = parseInt(e.target.value); ThemeMgr.apply(); Storage.save(); };
+  $('set-fontfamily').onchange = (e) => {
+    App.settings.fontFamily = e.target.value;
+    ThemeMgr.apply();
+    Storage.save();
+    showToast('字体已更换');
+  };
+  $('set-glass-transparency').oninput = (e) => {
+    App.settings.glassTransparency = parseFloat(e.target.value);
+    document.documentElement.style.setProperty('--glass-transparency', App.settings.glassTransparency);
+    Storage.save();
+  };
   $('set-themes').onclick = () => renderThemeCustomizer();
   $('set-clear').onclick = () => {
     if (confirm('确定清空所有数据？此操作不可恢复')) {
@@ -1988,12 +2048,24 @@ function renderThemeCustomizer() {
         ${THEMES.map(t => {
           const isActive = App.settings.theme === t.id;
           return `<div class="theme-card ${isActive?'active':''}" data-theme="${t.id}">
-            <div class="theme-preview" id="preview-${t.id}"></div>
+            <div class="theme-preview" id="preview-${t.id}">
+              <span class="theme-preview-icon">${t.icon || '🎨'}</span>
+            </div>
             <div class="theme-name">${t.name}</div>
           </div>`;
         }).join('')}
       </div>
     </div>
+    ${App.settings.theme === 'liquid-glass' ? `
+    <div class="theme-custom-section">
+      <h3>液态玻璃调节</h3>
+      <div class="slider-row">
+        <label>透明度</label>
+        <input type="range" id="tc-glass-transparency" min="0.3" max="0.95" step="0.05" value="${App.settings.glassTransparency}">
+        <span class="val" id="tc-glass-val">${Math.round(App.settings.glassTransparency * 100)}%</span>
+      </div>
+    </div>
+    ` : ''}
     <div class="theme-custom-section">
       <h3>自定义调色</h3>
       <div class="slider-row">
@@ -2040,7 +2112,6 @@ function renderThemeCustomizer() {
       document.body.removeChild(tempEl);
     }
   });
-
   // Theme selection
   document.querySelectorAll('.theme-card').forEach(card => {
     card.onclick = () => {
@@ -2093,9 +2164,21 @@ function renderThemeCustomizer() {
     App.settings.customBrightness = null;
     ThemeMgr.apply();
     Storage.save();
+    showToast('自定义配色已重置');
     renderThemeCustomizer();
-    showToast('已重置为默认配色');
   };
+
+  // Glass transparency slider (in theme customizer)
+  const tcGlassSlider = $('tc-glass-transparency');
+  if (tcGlassSlider) {
+    tcGlassSlider.oninput = (e) => {
+      App.settings.glassTransparency = parseFloat(e.target.value);
+      document.documentElement.style.setProperty('--glass-transparency', App.settings.glassTransparency);
+      const valEl = $('tc-glass-val');
+      if (valEl) valEl.textContent = Math.round(App.settings.glassTransparency * 100) + '%';
+      Storage.save();
+    };
+  }
   showView('themes');
 }
 
